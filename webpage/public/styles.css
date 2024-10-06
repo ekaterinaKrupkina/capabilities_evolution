@@ -1,0 +1,325 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+#project-description {
+    background-color: #ecf0f1;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+#timeline-container {
+    position: relative;
+    padding: 40px 0;
+    padding-bottom: 100px; /* Increased padding at the bottom */
+}
+
+#timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding: 40px 0;
+    margin-bottom: 60px; /* Space for subcategories */
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 140px;
+}
+
+.year-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.year-label, .name-label {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.timeline-item.active .year-dot {
+    background-color: #e74c3c;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+#timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px; /* Adjust based on your layout */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #bdc3c7;
+    z-index: -1;
+}
+
+#subcategories {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sub-dot {
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: white;
+    border-radius: 15px;
+    margin: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 70px; /* Adjusted based on new timeline-item width */
+    right: 70px;
+    height: 2px;
+    background-color: #bdc3c7;
+    z-index: 1;
+}
+
+#subcategories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.sub-dot {
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sub-dot:hover {
+    transform: scale(1.05);
+}
+
+.sub-dot.active {
+    background-color: #e67e22;
+    box-shadow: 0 0 10px rgba(230, 126, 34, 0.5);
+}
+
+#details-panel {
+    position: fixed;
+    max-height: 80vh; /* Limit the height to 80% of the viewport height */
+    overflow-y: auto; /* Add vertical scrolling when content exceeds max-height */
+    width: 300px; /* Or whatever width you prefer */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+#close-details {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001; /* Ensure it's above other content */
+}
+
+#close-details:hover {
+    color: red; /* Or any color to indicate it's interactive */
+}
+
+#details-content {
+    margin-top: 20px;
+    padding-right: 10px; /* Add some padding to prevent content from touching the scrollbar */
+}
+
+.no-description {
+    font-style: italic;
+    color: #999;
+}
+
+.challenges-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+}
+
+.challenges-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* Add a line connecting timeline items */
+#timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #bdc3c7;
+    z-index: -1;
+}
+
+#details-panel h2 span {
+    font-size: 0.8em;
+    color: #7f8c8d;
+}
+
+/* Ensure there's space below the timeline for subcategories */
+#timeline::after {
+    content: '';
+    display: block;
+    height: 60px; /* Adjust as needed */
+}
+
+/* Adjust year and label styling for better visibility */
+.year-dot {
+    width: 50px; /* Increased size */
+    height: 50px; /* Increased size */
+    font-size: 16px; /* Larger font */
+    margin-bottom: 10px; /* More space between dot and label */
+}
+
+.year-label {
+    font-size: 14px; /* Slightly larger font */
+    text-align: center;
+    max-width: 120px; /* Adjusted based on new timeline-item width */
+}
+
+.subcategories-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.subcategory-line {
+    width: 2px;
+    height: 20px;
+    background-color: #bdc3c7;
+}
+
+.subcategory {
+    padding: 5px 10px;
+    margin: 3px 0;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(52, 152, 219, 0.7);
+    color: white;
+}
+
+.subcategory:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.subcategory.active {
+    background-color: #e74c3c;
+    font-weight: bold;
+}
+
+[data-action="close-panel"] {
+    position: sticky;
+    top: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 1001;
+}
+
+[data-action="close-panel"]:hover {
+    background-color: #e0e0e0;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1002;
+    color: #333;
+}
+
+.close-button:hover {
+    color: red;
+}
+
+.dangers-section {
+    background-color: rgba(255, 0, 0, 0.1); /* Transparent red background */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.dangers-section h3,
+.dangers-section h4 {
+    color: #d32f2f; /* Dark red color for the heading */
+    margin-top: 0;
+}
+
+.dangers-section ul {
+    margin-bottom: 0;
+}
